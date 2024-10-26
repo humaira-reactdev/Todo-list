@@ -32,7 +32,7 @@ const SignupComponent = () => {
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6">
         {/* Logo Section */}
         <div className="flex justify-center mb-8">
-          <h1 className="text-2xl font-bold">MyToDoList</h1> {/* Replace with an image tag if you have a logo */}
+          <h1 className="text-2xl font-bold text-[#3B1E54]">MyToDoList</h1> {/* Replace with an image tag if you have a logo */}
         </div>
 
         <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">Sign Up</h2>
@@ -124,7 +124,7 @@ const SignupComponent = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-[#E78F81] text-white p-3 rounded hover:bg-blue-700 transition"
+            className="w-full bg-[#E78F81] text-white p-3 rounded hover:bg-[#3B1E54] transition"
           >
             Sign Up
           </button>

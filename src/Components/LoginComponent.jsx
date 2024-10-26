@@ -44,7 +44,7 @@ const LoginComponent = () => {
         <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6">
           {/* Logo Section */}
           <div className="flex justify-center mb-8">
-            <h1 className="text-2xl font-bold">MyToDoList</h1>
+            <h1 className="text-2xl font-bold text-[#3B1E54]">MyToDoList</h1>
           </div>
 
           {/* Title */}

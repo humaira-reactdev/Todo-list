@@ -14,8 +14,8 @@ const Navbar = () => {
     <>
       <nav className="absolute top-0 left-0 w-full bg-transparent text-black p-4 flex justify-between items-center z-10">
         {/* Logo */}
-        <div className="text-2xl font-bold">
-          <a href="/">MyToDoList</a>
+        <div className="text-2xl font-bold text-[#3B1E54]">
+          <h1>MyToDoList</h1>
         </div>
 
         {/* Hamburger Icon (visible only on small screens) */}
