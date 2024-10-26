@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { HiMenu } from 'react-icons/hi';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,22 +22,9 @@ const Navbar = () => {
         <div className="sm:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="text-gray-300 focus:outline-none"
+            className="text-black focus:outline-none"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              ></path>
-            </svg>
+             <HiMenu className="w-6 h-6" />
           </button>
         </div>
 
@@ -44,23 +32,24 @@ const Navbar = () => {
         <div
           className={`${
             isOpen ? 'block' : 'hidden'
-          } sm:flex sm:space-x-6 sm:items-center sm:static absolute top-16 left-0 w-full bg-gray-800 sm:bg-transparent sm:w-auto`}
+          } sm:flex sm:space-x-6 sm:items-center p-[10px] sm:static absolute top-16 left-0 w-full bg-[#E78F81] sm:bg-transparent sm:w-auto`}
         >
-          <NavLink
+          {/* <NavLink
             to="/tasks"
             className="block px-4 py-2 text-black hover:text-white transition"
             activeClassName="text-white"
             onClick={() => setIsOpen(false)}
           >
             Tasks
-          </NavLink>
+          </NavLink> */}
           
           <button
-            onClick={handleLogout}
-            className="block px-4 py-2 bg-[#E78F81] rounded hover:bg-[#c96c61] transition sm:px-4 sm:py-2"
-          >
+              onClick={handleLogout}
+              className="block px-4 py-2 bg-white text-black rounded hover:bg-[#3B1E54] hover:text-white transition sm:px-4 sm:py-2"
+            >
             Logout
           </button>
+
         </div>
       </nav>
     </>

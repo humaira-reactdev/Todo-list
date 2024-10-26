@@ -97,7 +97,7 @@ const LoginComponent = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-[#E78F81] text-white p-3 rounded hover:bg-blue-700 transition"
+              className="w-full bg-[#E78F81] text-white p-3 rounded hover:bg-[#3B1E54] transition"
             >
               Login
             </button>
