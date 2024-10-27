@@ -1,11 +1,22 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getDatabase } from 'firebase/database';
+import { useDispatch } from 'react-redux';
+import {userData, userSlice} from '../Slices/Slice'
 
 const LoginComponent = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
+
+  const navigate=useNavigate()
+  const dispatch=useDispatch()
+
+  //=================firebase variables================//
+  const auth = getAuth();
+  const db=getDatabase()
 
   const validateForm = () => {
     let formErrors = {};
@@ -20,9 +31,30 @@ const LoginComponent = () => {
     e.preventDefault();
     if (validateForm()) {
       console.log('Form submitted:', { email, password });
-      // Process login logic here
-    }
+      //====================login==================//
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // =======navigate to login page==========//
+          navigate('/')
+
+          // =============set data to redux=============//
+          dispatch(userData(user))
+
+          // ============set data to local storage===========//
+          localStorage.setItem('userData', JSON.stringify(user))
+
+
+      const user = userCredential.user;
+      
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+
+      }
   };
+
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);

@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { HiMenu } from 'react-icons/hi';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+  // const currentUserData = useSelector((state) => state.counter.userSlice);
+
+
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -42,6 +46,9 @@ const Navbar = () => {
           >
             Tasks
           </NavLink> */}
+          <div className="user">
+            <p>Name</p>
+          </div>
           
           <button
               onClick={handleLogout}

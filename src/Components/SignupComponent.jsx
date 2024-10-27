@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { getAuth, createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from "firebase/auth";
+import { CSSProperties } from "react";
+import { app } from '../firebase.config';
 
 const SignupComponent = () => {
   const [name, setName] = useState('');
@@ -8,6 +11,30 @@ const SignupComponent = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
+
+  const navigate=useNavigate()
+
+  //==========firebase variables======//
+  const auth = getAuth();
+
+  // //============signup===========//
+  // createUserWithEmailAndPassword(auth, email, password)
+  // .then((userCredential) => {
+  //   // Signed up 
+  //   const user = userCredential.user;
+  //   updateProfile(auth.currentUser, {
+  //     displayName: name, // Update display name using formData.name
+  //     photoURL: "https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg"
+  //   })
+  //   console.log('signed up successfully!')
+  //   navigate('/login')
+  // })
+  // .catch((error) => {
+  //   const errorCode = error.code;
+  //   const errorMessage = error.message;
+  //   // ..
+  // });
+  // //===================signup complete===========//
 
   const validateForm = () => {
     let formErrors = {};
@@ -23,16 +50,39 @@ const SignupComponent = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
+      //============signup===========//
+  createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    updateProfile(auth.currentUser, {
+      displayName: name, // Update display name using formData.name
+      photoURL: "https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg"
+    })
+    console.log('signed up successfully!')
+    sendEmailVerification(auth.currentUser)
+    console.log('email verification link sent')
+    navigate('/login')
+    
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  });
+  //===================signup complete===========//
       console.log('Form submitted:', { name, email, password });
     }
   };
+
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6">
         {/* Logo Section */}
         <div className="flex justify-center mb-8">
-          <h1 className="text-2xl font-bold text-[#3B1E54]">MyToDoList</h1> {/* Replace with an image tag if you have a logo */}
+          <h1 className="text-2xl font-bold text-[#3B1E54]">MyToDoList</h1>
         </div>
 
         <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">Sign Up</h2>
