@@ -4,7 +4,7 @@ import { HiMenu } from 'react-icons/hi';
 import { useSelector } from 'react-redux';
 
 const Navbar = () => {
-  // const currentUserData = useSelector((state) => state.counter.userSlice);
+  const currentUserData = useSelector((state) => state.counter.userData);
 
 
   const [isOpen, setIsOpen] = useState(false);
@@ -47,7 +47,7 @@ const Navbar = () => {
             Tasks
           </NavLink> */}
           <div className="user">
-            <p>Name</p>
+            <p>{currentUserData?.displayName}</p>
           </div>
           
           <button

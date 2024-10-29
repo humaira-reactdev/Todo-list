@@ -34,6 +34,7 @@ const LoginComponent = () => {
       //====================login==================//
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
+          const user=userCredential.user;
           // =======navigate to login page==========//
           navigate('/')
 
@@ -43,8 +44,6 @@ const LoginComponent = () => {
           // ============set data to local storage===========//
           localStorage.setItem('userData', JSON.stringify(user))
 
-
-      const user = userCredential.user;
       
     })
     .catch((error) => {
